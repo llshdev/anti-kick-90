@@ -1,4 +1,4 @@
-package com.example.mixin;
+package net.fabricmc.example.mixin;
 
 import net.minecraft.client.network.ClientPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -11,8 +11,7 @@ public class ExampleMixin {
     @Inject(method = "tick", at = @At("HEAD"))
     private void limitPitch(CallbackInfo info) {
         ClientPlayerEntity player = (ClientPlayerEntity) (Object) this;
-        // Если смотрим вниз больше чем на 87 градусов - ставим ровно 87
-        if (player.getPitch() > 87.0f) {
+        if (player != null && player.getPitch() > 87.0f) {
             player.setPitch(87.0f);
         }
     }
